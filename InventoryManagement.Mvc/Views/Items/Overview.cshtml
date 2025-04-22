@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Item>
+
+@{
+	ViewData["Title"] = "Artikel";
+}
+
+<h1>Artikel</h1>
+
+<p>
+	<a class="btn btn-primary" asp-controller="Items" asp-action="CreateEdit">Neuer Artikel</a>
+</p>
+
+<hr />
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price (€)</th>
+			<th>Stock</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Name</td>
+				<td>@item.Description</td>
+				<td>@item.Price</td>
+				<td>@item.Stock</td>
+				<td>
+					<a class="btn btn-secondary" asp-controller="Items" asp-action="CreateEdit" asp-route-id="@item.Id">Bearbeiten</a>
+					<a class="btn btn-danger" asp-controller="Items" asp-action="DeleteItem" asp-route-id="@item.Id">Löschen</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

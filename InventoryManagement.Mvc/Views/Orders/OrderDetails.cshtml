@@ -1,0 +1,54 @@
+﻿@model Order
+
+@{
+	ViewData["Title"] = "Bestellung " + Model.Id;
+}
+
+<h1>Bestellung @Model.Id</h1>
+
+<p>
+	<a class="btn btn-primary" asp-controller="Orders" asp-action="CreateEdit" asp-route-id="@Model.Id">Bearbeiten</a>
+	<a class="btn btn-danger" asp-controller="Orders" asp-action="DeleteOrder" asp-route-id="@Model.Id">Löschen</a>
+</p>
+
+<hr />
+
+<p>
+	<strong>Id:</strong> @Model.Id
+	<br />
+	<strong>OrderDate</strong> @Model.OrderDate
+	<br />
+	<strong>Comments:</strong> @Model.Comments
+</p>
+
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Quantity
+		</th>
+		<th>
+			Price
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var orderItem in Model.OrderItems)
+	{
+		<tr>
+			<td>
+				@orderItem.Item.Name
+			</td>
+			<td>
+				@orderItem.Quantity
+			</td>
+			<td>
+				@orderItem.Item.Price
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
