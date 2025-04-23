@@ -1,0 +1,48 @@
+﻿@page
+@model InventoryManagement.RazorPages.Pages.Items.OverviewModel
+
+@{
+	ViewData["Title"] = "Artikel";
+}
+
+<h1>Artikel</h1>
+
+<p>
+	<a class="btn btn-primary" asp-page="CreateEdit">Neuer Artikel</a>
+</p>
+
+<hr />
+
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Price (€)</th>
+		<th>Stock</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model.Items)
+	{
+		<tr>
+			<td>@item.Id</td>
+			<td>@item.Name</td>
+			<td>@item.Description</td>
+			<td>@item.Price</td>
+			<td>@item.Stock</td>
+			<td>
+				<a class="btn btn-secondary" asp-page="CreateEdit" asp-route-id="@item.Id">Bearbeiten</a>
+				
+				<!-- Löschen-Button -->
+				<form method="post" asp-page-handler="Delete" asp-route-id="@item.Id" style="display:inline;">
+					<button type="submit" class="btn btn-danger" onclick="return confirm('Wirklich löschen?');">Löschen</button>
+				</form>
+
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>

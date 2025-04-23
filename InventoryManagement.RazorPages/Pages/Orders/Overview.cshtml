@@ -1,0 +1,57 @@
+﻿@page
+@model InventoryManagement.RazorPages.Pages.Orders.OverviewModel
+
+@{
+	ViewData["Title"] = "Bestellungen";
+}
+
+<h1>Bestellungen</h1>
+
+<p>
+	<a class="btn btn-primary" asp-page="CreateEdit">Neue Bestellung</a>
+</p>
+
+<hr />
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				Id
+			</th>
+			<th>
+				OrderDate
+			</th>
+			<th>
+				Comments
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var order in Model.Orders)
+		{
+			<tr>
+				<td>
+					@order.Id
+				</td>
+				<td>
+					@order.OrderDate.ToString("dd.MM.yyyy")
+				</td>
+				<td>
+					@order.Comment
+				</td>
+				<td>
+					<a class="btn btn-primary" asp-page="OrderDetails" asp-route-id="@order.Id">Details</a>
+					<a class="btn btn-secondary" asp-page="CreateEdit" asp-route-id="@order.Id">Bearbeiten</a>
+					
+					<!-- Löschen-Button -->
+					<form method="post" asp-page-handler="Delete" asp-route-id="@order.Id" style="display:inline;">
+						<button type="submit" class="btn btn-danger" onclick="return confirm('Wirklich löschen?');">Löschen</button>
+					</form>
+
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

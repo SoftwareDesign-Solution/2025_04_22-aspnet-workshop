@@ -1,0 +1,54 @@
+﻿@page
+@model InventoryManagement.RazorPages.Pages.Orders.OrderDetailsModel
+
+@{
+	ViewData["Title"] = "Bestellung: " + Model.Order.Id;
+}
+
+<h1>Bestellung: @Model.Order.Id</h1>
+
+<p>
+	<a class="btn btn-primary" asp-page="Overview">Zurück zur Übersicht</a>
+</p>
+
+<hr />
+
+<p>
+	<strong>Id:</strong> @Model.Order.Id
+	<br />
+	<strong>OrderDate</strong> @Model.Order.OrderDate.ToString("dd.MM.yyyy")
+	<br />
+	<strong>Comments:</strong> @Model.Order.Comment
+</p>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Quantity
+			</th>
+			<th>
+				Price
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var orderItem in Model.Order.OrderItems)
+		{
+			<tr>
+				<td>
+					@orderItem.Item.Name
+				</td>
+				<td>
+					@orderItem.Quantity
+				</td>
+				<td>
+					@orderItem.Item.Price
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

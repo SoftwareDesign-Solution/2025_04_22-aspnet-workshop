@@ -1,0 +1,44 @@
+﻿@page "{id:int?}"
+@model InventoryManagement.RazorPages.Pages.Items.CreateEditModel
+
+
+<h1>@((Model.Item.Id > 0) ? "Artikel: " + Model.Item.Name : "Neuer Artikel")</h1>
+
+<p>
+	<a class="btn btn-primary" asp-page="Overview">Zurück zur Übersicht</a>
+</p>
+
+<hr />
+
+<form method="post">
+	<div class="mb-3">
+		<label asp-for="@Model.Item.Id" class="form-label">Id</label>
+		<input asp-for="@Model.Item.Id" class="form-control" readonly />
+	</div>
+	<div class="mb-3">
+		<label asp-for="@Model.Item.Name" class="form-label">Name</label>
+		<input asp-for="@Model.Item.Name" class="form-control" />
+		<span class="text-danger" asp-validation-for="@Model.Item.Name"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="@Model.Item.Description" class="form-label">Description</label>
+		<textarea asp-for="@Model.Item.Description" class="form-control"></textarea>
+	</div>
+	<div class="mb-3">
+		<label asp-for="@Model.Item.Price" class="form-label">Price</label>
+		<input type="number" asp-for="@Model.Item.Price" class="form-control" />
+		<span class="text-danger" asp-validation-for="@Model.Item.Price"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="@Model.Item.Stock" class="form-label">Stock</label>
+		<input type="number" min="0" asp-for="@Model.Item.Stock" class="form-control" />
+		<span class="text-danger" asp-validation-for="@Model.Item.Stock"></span>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
