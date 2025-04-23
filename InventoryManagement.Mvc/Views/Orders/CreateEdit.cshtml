@@ -1,5 +1,72 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model OrderDto
 @{
+	ViewData["Title"] = Model.Id > 0 ? "Bestellung " + Model.Id : "Neue Bestellung";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+	<a class="btn btn-primary" asp-controller="Orders" asp-action="Overview">Zurück zur Übersicht</a>
+</p>
+
+<hr />
+
+<form asp-controller="Orders" asp-action="CreateEditOrder" method="post">
+	<div class="mb-3">
+		<label asp-for="OrderDate"></label>
+		<input asp-for="OrderDate" class="form-control" />
+		<span asp-validation-for="OrderDate" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="Comment"></label>
+		<textarea asp-for="Comment" class="form-control"></textarea>
+		<span asp-validation-for="Comment" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label>Artikel</label>
+		<select id="itemSelect" class="form-control">
+			<option value="">Bitte wählen...</option>
+			@foreach (var item in (ViewBag.AvailableItems as List<Item>)!)
+			{
+				<option value="@item.Id">@item.Name</option>
+			}
+		</select>
+		<span asp-validation-for="OrderItems" class="text-danger"></span>
+	</div>
+
+	
+	<table class="table table-striped">
+		
+		<thead>
+			<tr>
+				<th>Artikel</th>
+				<th>Menge</th>
+			</tr>
+		</thead>
+		<tbody id="orderItemsTable">
+			@for (int i = 0; i < Model.OrderItems.Count; i++)
+			{
+
+				var item = Model.OrderItems.ElementAt(i);
+
+				<tr data-item-id="@Model.OrderItems[i].ItemId">
+					<td>@item.Item.Name</td>
+					<td>
+						<input asp-for="OrderItems[@i].Quantity" class="form-control" />
+						<input type="hidden" asp-for="OrderItems[@i].ItemId" />
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<div class="mb-3">
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

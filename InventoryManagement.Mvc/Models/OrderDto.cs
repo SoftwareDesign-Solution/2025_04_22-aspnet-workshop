@@ -2,18 +2,16 @@
 
 namespace InventoryManagement.Mvc.Models
 {
-    public class Order
+    public class OrderDto
     {
         public int Id { get; set; }
 
         [Required(ErrorMessage = "OrderDate is required.")]
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
         [StringLength(500, ErrorMessage = "Comments cannot exceed 500 characters.")]
         public string? Comment { get; set; }
 
-        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-
-        
+        public IList<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

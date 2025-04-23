@@ -7,7 +7,7 @@
 <h1>Bestellungen</h1>
 
 <p>
-	<a class="btn btn-primary">Neue Bestellung</a>
+	<a class="btn btn-primary" asp-controller="Orders" asp-action="CreateEdit">Neue Bestellung</a>
 </p>
 
 <hr />
@@ -37,7 +37,7 @@
 				@item.OrderDate
 			</td>
 			<td>
-				@item.Comments
+				@item.Comment
 			</td>
 			<td>
 				<a class="btn btn-primary" asp-controller="Orders" asp-action="OrderDetails" asp-route-id="@item.Id">Details</a>
