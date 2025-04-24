@@ -1,0 +1,94 @@
+﻿@page "/items/overview"
+@rendermode InteractiveServer
+@using InventoryManagement.Blazor.Data
+@using InventoryManagement.Blazor.Models
+@using Microsoft.EntityFrameworkCore
+@inject ApplicationDbContext db
+@inject NavigationManager navManager
+
+<h3>@headingValue</h3>
+
+<p>
+    <a class="btn btn-primary" @onclick="CreateItem">Neuer Artikel</a>
+</p>
+
+@if (items == null)
+{
+    <p>Items loading...</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price (€)</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in items)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td>
+                    <button class="btn btn-secondary" @onclick="() => EditItem(item.Id)">Bearbeiten</button>
+                    <button class="btn btn-danger" @onclick="() => DeleteItem(item.Id)">Löschen</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Item>? items;
+
+    private string headingValue = "Overview";
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await db.Items.ToListAsync();
+    }
+
+    private async Task DeleteItem(int id)
+    {
+        var item = await db.Items.FindAsync(id);
+        if (item != null)
+        {
+            db.Items.Remove(item);
+            await db.SaveChangesAsync();
+            items = await db.Items.ToListAsync();
+            StateHasChanged(); // Refresh the UI
+        }
+    }
+
+    private async Task CreateItem()
+    {
+        // Logic to create a new item
+        // This could involve navigating to a different page or opening a modal
+        // For now, we'll just simulate it with a console message
+        Console.WriteLine("Creating a new item");
+        navManager.NavigateTo("/items/createedit");
+    }
+
+    private async Task EditItem(int id)
+    {
+        // Logic to edit the item
+        // This could involve navigating to a different page or opening a modal
+        // For now, we'll just simulate it with a console message
+        Console.WriteLine($"Editing item with ID: {id}");
+
+        navManager.NavigateTo($"/items/createedit/{id}");
+
+    }
+
+    private void UpdateHeading() => headingValue = $"Updated Heading ({DateTime.Now})";
+}

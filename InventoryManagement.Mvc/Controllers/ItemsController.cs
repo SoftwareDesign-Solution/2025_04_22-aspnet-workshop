@@ -1,9 +1,11 @@
 ﻿using InventoryManagement.Mvc.Data;
 using InventoryManagement.Mvc.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagement.Mvc.Controllers
 {
+
     public class ItemsController : Controller
     {
 
@@ -27,6 +29,7 @@ namespace InventoryManagement.Mvc.Controllers
             return View(items);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateEdit(int id)
         {
 
@@ -66,6 +69,7 @@ namespace InventoryManagement.Mvc.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteItem(int id)
         {
 

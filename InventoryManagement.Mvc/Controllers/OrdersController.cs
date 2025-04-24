@@ -1,11 +1,14 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using InventoryManagement.Mvc.Data;
 using InventoryManagement.Mvc.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Mvc.Controllers
 {
+
+    [Authorize(Roles = "User")]
     public class OrdersController : Controller
     {
 

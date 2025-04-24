@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Tests",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "labs", "labs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Blazor", "InventoryManagement.Blazor\InventoryManagement.Blazor.csproj", "{D3B57456-D546-412A-B680-0167043B49C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,18 @@ Global
 		{ABE512B6-465E-48E3-A243-EE5874E18CF3}.Release|x64.Build.0 = Release|Any CPU
 		{ABE512B6-465E-48E3-A243-EE5874E18CF3}.Release|x86.ActiveCfg = Release|Any CPU
 		{ABE512B6-465E-48E3-A243-EE5874E18CF3}.Release|x86.Build.0 = Release|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Release|x64.Build.0 = Release|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3B57456-D546-412A-B680-0167043B49C0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
